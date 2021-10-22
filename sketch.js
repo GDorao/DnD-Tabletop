@@ -1,3 +1,5 @@
+//solo añado un comentario para probar como funciona GitHub :)
+
 let width=1200-325
 let widthInit=1200-325
 let widthPlus=325
