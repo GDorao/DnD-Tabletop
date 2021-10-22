@@ -1,0 +1,26 @@
+[
+  {
+    "tile": 40,
+    "background": "bosque.jpg"
+  },
+  {
+    "src": "Cave Bear.png",
+    "name": "Oso Z",
+    "x": 8,
+    "y": 4,
+    "mov": 30,
+    "health": 40,
+    "init": 15,
+    "tokenSize": 2
+  },
+  {
+    "src": "Cave Bear.png",
+    "name": "Osezno Z",
+    "x": 9,
+    "y": 3,
+    "mov": 20,
+    "health": 30,
+    "init": 10,
+    "tokenSize": 1
+  }
+]
