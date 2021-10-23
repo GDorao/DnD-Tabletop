@@ -120,7 +120,6 @@ function deletePC(PC){
     let name=PC.name
 
     if(PCarray.indexOf(PC) != -1){//PC esta en PCarray
-        console.log("ah")
         for (let i=0; i<PCarray.length;i++){
             if(PCarray[i].name==name){
                 PCarray.splice(i,1)
