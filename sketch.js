@@ -16,7 +16,7 @@ function preload(){//Cargar todas las fotos que están en el momento inicial en 
   
 
   let allTokens=[
-    "Saeya.jpg", "angry.jpg","Axe.png", "Bow.png", "Cave Bear.png", "donut.jpg", "elf.jpg", "Hand.png","happy.jpg","Sword.png"
+    "angry.jpg","Axe.png", "Bow.png", "Cave Bear.png", "donut.jpg", "elf.jpg", "Hand.png","happy.jpg","Sword.png"
   
   
   ]
@@ -59,7 +59,7 @@ function setup() {
   crearBotones()
 
   //Crear PCs
-  Donut=new PC("donut.jpg","Donut",7,7, 30, 21)
+  /* Donut=new PC("donut.jpg","Donut",7,7, 30, 21)
   PCarray.push(Donut)
 
   Saeya=new PC("Saeya.jpg","Saeya",12,9, 30, 20)
@@ -75,11 +75,11 @@ function setup() {
   PCarray.push(Kornval)
 
   Hecalyra=new PC("happy.jpg","Hecályra",14,7, 30, 6)
-  PCarray.push(Hecalyra)
+  PCarray.push(Hecalyra) */
   
 
-  CombatArray=PCarray//iniciar CombatArray sin enemigos todavia
-  PCseleccionado=CombatArray[0]//iniciar PCseleccionado
+  //CombatArray=PCarray//iniciar CombatArray sin enemigos todavia
+  //PCseleccionado=CombatArray[0]//iniciar PCseleccionado
 }
 
 
@@ -189,6 +189,8 @@ function windowResized() {
   TokenBut2.position(this.x, height)
   EncounterBut.position(this.x, height)
   EncounterBut2.position(this.x, height)
+  addPCbut.position(this.x, height+22)
+  addPCbut2.position(this.x, height+22)
 
   input.position(this.x, height)
   input2.position(this.x, height)

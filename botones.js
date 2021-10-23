@@ -29,6 +29,8 @@ var TokenBut
 var TokenBut2
 var EncounterBut
 var EncounterBut2
+var addPCbut
+var addPCbut2
 
 var input
 var input2
@@ -196,27 +198,28 @@ function crearBotones(){
   //boton Encounter
   EncounterBut = createButton('Encounter');
   EncounterBut.position(378, height);
-  /* EncounterBut.mousePressed(async () => {
-    let name= await getFileName()
-    json=loadJSON('assets/'+name)
-    
-    //await virtual
-    while(json[0]==undefined){await sleep(1);console.log(".")} //mientras no se haya cargado el json
-    loadEncounter(json)
-    }) */
 
   //boton Encounter v2
   EncounterBut2 = createFileInput((file)=>{
-    //json=loadJSON(file.data)
-    //console.log(file.data)
-    //await virtual
-    //while(json[0]==undefined){await sleep(1);console.log(".")} //mientras no se haya cargado el json
-    loadEncounter(file.data)
+    loadEncounter(file.data, "Enemy")
   })
   EncounterBut2.position(378, height);
   EncounterBut2.elt.style["opacity"]=0
   EncounterBut2.elt.style["width"]="76px"
   EncounterBut2.elt.accept='.json'
+
+  //boton addPCs
+  addPCbut = createButton('Add PC');
+  addPCbut.position(378, height+22);
+
+  //boton Encounter v2
+  addPCbut2 = createFileInput((file)=>{
+    loadEncounter(file.data, "PC")
+  })
+  addPCbut2.position(378, height+22);
+  addPCbut2.elt.style["opacity"]=0
+  addPCbut2.elt.style["width"]="62px"
+  addPCbut2.elt.accept='.json'
 
 
 

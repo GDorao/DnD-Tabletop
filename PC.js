@@ -97,22 +97,46 @@ function newEnemy(name,image="Sword.png",movE,x=0,y=0, health, init, tokenSize=1
         else{movE=30}
     }
 
-    enemy=new PC(image,name,x,y, movE, health, init, tokenSize)
+    let enemy=new PC(image,name,x,y, movE, health, init, tokenSize)
     Enemyarray.push(enemy)
-    CombatArray=PCarray.concat(Enemyarray)
+    CombatArray=PCarray.concat(Enemyarray)//redefine CombatArray
 }
 
-function loadEncounter(encounter){
-    //poner background y tilesize
-    bgImg=encounter[0].background
-    bg=loadImage("assets/"+bgImg)
-    TileSize=encounter[0].tile
-    //console.log(encounter[0].tile)
 
-    //poner enemigos //Object.keys(myObject).length
-    for(let i=1;i<encounter.length;i++){
-        //console.log("nuevo enemigo")
-        newEnemy(encounter[i].name,encounter[i].src,encounter[i].mov, encounter[i].x, encounter[i].y, encounter[i].health, encounter[i].init, encounter[i].tokenSize)
+function newPC(name,image="Sword.png",movE,x=0,y=0, health, init, tokenSize=1){
+    if (!name){
+        name="PC " + (Enemyarray.length+1)
+    }
+
+    if (!movE){
+        if(! isNaN(parseInt(input.value()))){
+            movE=abs(parseInt(input.value()))
+          }
+        else{movE=30}
+    }
+
+    let newPC=new PC(image,name,x,y, movE, health, init, tokenSize)
+    PCarray.push(newPC)
+    CombatArray=PCarray.concat(Enemyarray)//redefine CombatArray
+}
+
+
+function loadEncounter(encounter, type){
+    if(type=="Enemy"){
+        //poner background y tilesize
+        bgImg=encounter[0].background
+        bg=getImage(bgImg,"bg")
+        TileSize=encounter[0].tile
+
+        for(let i=1;i<encounter.length;i++){
+            newEnemy(encounter[i].name,encounter[i].src,encounter[i].mov, encounter[i].x, encounter[i].y, encounter[i].health, encounter[i].init, encounter[i].tokenSize)
+        }
+    }
+    if(type=="PC"){
+        //poner PCs
+        for(let i=0;i<encounter.length;i++){
+            newPC(encounter[i].name,encounter[i].src,encounter[i].mov, encounter[i].x, encounter[i].y, encounter[i].health, encounter[i].init, encounter[i].tokenSize)
+        }
     }
 }
 
@@ -161,16 +185,20 @@ function measureText(str, fontSize = 10) {
 
 function getImage(imgName, array){
     let img
+    let found=0
     if(array == "token"){
         for (let e of savedTokens){
-            if (e.name==imgName){img=e.image}
+            if (e.name==imgName){img=e.image;found=1}
         }
+        if(!found){img=loadImage('assets/Sword.png')}//default
     }
     if(array == "bg"){
         for (let e of savedBG){
-            if (e.name==imgName){img=e.image}
+            if (e.name==imgName){img=e.image;found=1}
         }
+        if(!found){img=220}//default
     }
+    
     return img
 }
 

@@ -1,0 +1,62 @@
+[
+  {
+    "src": "donut.jpg",
+    "name": "Donut",
+    "x": 7,
+    "y": 7,
+    "mov": 30,
+    "health": 21,
+    "init": 0,
+    "tokenSize": 1
+  },
+  {
+    "src": "Saeya.jpg",
+    "name": "Saeya",
+    "x": 12,
+    "y": 9,
+    "mov": 30,
+    "health": 20,
+    "init": 0,
+    "tokenSize": 1
+  },
+  {
+    "src": "happy.jpg",
+    "name": "Lotsu",
+    "x": 9,
+    "y": 6,
+    "mov": 30,
+    "health": 16,
+    "init": 0,
+    "tokenSize": 1
+  },
+  {
+    "src": "happy.jpg",
+    "name": "Ghesh",
+    "x": 9,
+    "y": 9,
+    "mov": 30,
+    "health": 20,
+    "init": 0,
+    "tokenSize": 1
+  },
+  {
+    "src": "happy.jpg",
+    "name": "Kornval",
+    "x": 12,
+    "y": 6,
+    "mov": 25,
+    "health": 20,
+    "init": 0,
+    "tokenSize": 1
+  },
+  {
+    "src": "happy.jpg",
+    "name": "Hecályra",
+    "x": 14,
+    "y": 7,
+    "mov": 30,
+    "health": 6,
+    "init": 0,
+    "tokenSize": 1
+  }
+]
