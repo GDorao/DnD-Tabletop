@@ -117,13 +117,13 @@ function crearBotones(){
     newEnemy(name,undefined,mov)
   })
 
-  //boton deleteEnemy
-  var deleteEnemyBut = createButton('Borrar');
-  deleteEnemyBut.position(701, height);
-  deleteEnemyBut.mousePressed(a => {
-    for (let e of Enemyarray){
+  //boton deletePC
+  var deletePCBut = createButton('Borrar');
+  deletePCBut.position(701, height);
+  deletePCBut.mousePressed(a => {
+    for (let e of CombatArray){
       if (e.selected){
-        deleteEnemy(e.name)
+        deletePC(e)
       }
     }
     })
