@@ -8,6 +8,8 @@ var bg
 let seleccionado=0
 var PCseleccionado
 var offsetUI=60
+var offsetWidthUI=325
+var offsetHeightUI=45
 
 function preload(){//Cargar todas las fotos que están en el momento inicial en el servidor
 //todas van a los array para que luego en el selector se vean de la misma manera las nativas y las importadas del PC
@@ -43,11 +45,11 @@ function preload(){//Cargar todas las fotos que están en el momento inicial en 
 function setup() {
   //Configurar pantalla
   //var canvas = createCanvas(widthInit+widthPlus, height)
-  var canvas = createCanvas(windowWidth, windowHeight-45)
-  width=windowWidth-325
+  var canvas = createCanvas(windowWidth, windowHeight-offsetHeightUI)
+  width=windowWidth-offsetWidthUI
   //widthInit=1200-325
   //widthPlus=325
-  height=windowHeight-45
+  height=windowHeight-offsetHeightUI
   
   frameRate(60);
   bgColor = 220 //loadImage('assets/'+'bosque'+'.jpg')
@@ -165,4 +167,36 @@ function draw() {
   //////////
 }
 
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight-offsetHeightUI)
+  width=windowWidth-offsetWidthUI
+  height=windowHeight-offsetHeightUI
+  //Move Buttons to new height
+
+  botonZoomUp.position(this.x, height)
+  botonZoomDown.position(this.x, height)
+  botonCirc.position(this.x, height)
+  botonCono.position(this.x, height)
+  botonBarrera.position(this.x, height)
+  clearEnemies.position(this.x, height)
+  fullScreenBut.position(this.x, height)
+  newEnemyBut.position(this.x, height)
+  deletePCBut.position(this.x, height)
+  BgBut.position(this.x, height)
+  BgBut2.position(this.x, height)
+  TokenBut.position(this.x, height)
+  TokenBut2.position(this.x, height)
+  EncounterBut.position(this.x, height)
+  EncounterBut2.position(this.x, height)
+
+  input.position(this.x, height)
+  input2.position(this.x, height)
+  inputInit.position(this.x, height)
+  inputHealth.position(this.x, height)
+  inputMov.position(this.x, height)
+
+  selToken.position(this.x, height+22)
+  selBG.position(this.x, height+22)
+}
 

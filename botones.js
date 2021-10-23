@@ -2,10 +2,8 @@ var savedTokens=[]//name, image
 var savedBG=[]//name, image
 //var savedEncounters=[]//name, object array //esto casi que se puede hacer solo desde pc local y ya, no habrá nativos predefinidos3
 
-
 var ViewCircle = 0
 let rCircle=30
-
 
 var ViewCone = 0
 let angCono=60
@@ -13,17 +11,39 @@ let rCone=30
 let xCono=0
 let yCono=0
 
+var haciendoBarrera=0
+
+//all buttons, inputs and selects
+var botonZoomUp
+var botonZoomDown
+var botonCirc
+var botonCono
+var botonBarrera
+var clearEnemies
+var fullScreenBut
+var newEnemyBut
+var deletePCBut
+var BgBut
+var BgBut2
+var TokenBut
+var TokenBut2
+var EncounterBut
+var EncounterBut2
+
+var input
+var input2
 var inputInit
 var inputHealth
 var inputMov
 
-var haciendoBarrera=0
+var selToken
+var selBG
 
-var TokenBut2//aqui para debug
+
 
 var GridCheck
 
-var selToken
+
 
 function viewCircle(){
   ViewCircle = 2
@@ -56,7 +76,7 @@ function crearBotones(){
     
   //Crear botones
   //botones Zoom
-  var botonZoomUp = createButton('+')
+  botonZoomUp = createButton('+')
   botonZoomUp.position(335, height)
   
   botonZoomUp.mousePressed(()=>{
@@ -64,7 +84,7 @@ function crearBotones(){
     else{TileSize+=2}
   })
   
-  var botonZoomDown = createButton('- ')
+  botonZoomDown = createButton('- ')
   botonZoomDown.position(358, height);
   botonZoomDown.mousePressed(()=>{
     if(PCseleccionado.selected){
@@ -75,34 +95,34 @@ function crearBotones(){
   
 
   //boton circulo
-  var botonCirc = createButton('Círculo');
+  botonCirc = createButton('Círculo');
   botonCirc.position(170, height);
   botonCirc.mousePressed(viewCircle);
 
   //boton cono
-  var botonCono = createButton('Cono');
+  botonCono = createButton('Cono');
   botonCono.position(227, height);
   botonCono.mousePressed(viewCone);
 
   //boton barrera
-  var botonBarrera = createButton('Barrera');
+  botonBarrera = createButton('Barrera');
   botonBarrera.position(275, height);
   botonBarrera.mousePressed(a => {haciendoBarrera=3;Barrera=[[0,0]];});
 
   //boton clearEnemies
-  var clearEnemies = createButton('Limpiar');
+  clearEnemies = createButton('Limpiar');
   clearEnemies.position(454, height);
   clearEnemies.mousePressed(()=>{deleteAllEnemies();})
 
   //boton fullScreen
-  var fullScreenBut = createButton('#');
+  fullScreenBut = createButton('#');
   fullScreenBut.position(1000, height);
   fullScreenBut.mousePressed(()=>{document.documentElement.requestFullscreen()})
 
   
 
   //boton newEnemy
-  var newEnemyBut = createButton('Enemigo');
+  newEnemyBut = createButton('Enemigo');
   newEnemyBut.position(633, height);
   newEnemyBut.mousePressed(a => {
     let name
@@ -118,7 +138,7 @@ function crearBotones(){
   })
 
   //boton deletePC
-  var deletePCBut = createButton('Borrar');
+  deletePCBut = createButton('Borrar');
   deletePCBut.position(701, height);
   deletePCBut.mousePressed(a => {
     for (let e of CombatArray){
@@ -130,7 +150,7 @@ function crearBotones(){
 
 
   //boton Fondo. Inutil. Sensacion de boton para el verdadero input
-  var BgBut = createButton('+');
+  BgBut = createButton('+');
   BgBut.position(602, height);
  
   //boton Fondo real
@@ -151,7 +171,7 @@ function crearBotones(){
 
 
   //boton Token. Inutil. Sensacion de boton para el verdadero input
-  var TokenBut = createButton('+');
+  TokenBut = createButton('+');
   TokenBut.position(881, height);
     
   //boton Token real
@@ -174,7 +194,7 @@ function crearBotones(){
 
 
   //boton Encounter
-  var EncounterBut = createButton('Encounter');
+  EncounterBut = createButton('Encounter');
   EncounterBut.position(378, height);
   /* EncounterBut.mousePressed(async () => {
     let name= await getFileName()
@@ -234,6 +254,7 @@ function crearBotones(){
     PCseleccionado.selected=false
   })
 
+  //inputMov
   inputMov = createInput();
   inputMov.position(width+sizeUI+100, (0+0.3)*sizeUI)
   inputMov.size(40,sizeUI/3)
