@@ -22,6 +22,7 @@ var botonBarrera
 var clearEnemies
 var fullScreenBut
 var newEnemyBut
+var newPCBut
 var deletePCBut
 var BgBut
 var BgBut2
@@ -82,37 +83,41 @@ function crearBotones(){
   botonZoomUp.position(335, height)
   
   botonZoomUp.mousePressed(()=>{
-    if(PCseleccionado.selected){PCseleccionado.tokenSize+=1}
+    if(PCseleccionado){//only if it exists
+      if(PCseleccionado.selected){PCseleccionado.tokenSize+=1}
+      else{TileSize+=2}
+    }
     else{TileSize+=2}
   })
   
-  botonZoomDown = createButton('- ')
+  botonZoomDown = createButton('-')
   botonZoomDown.position(358, height);
   botonZoomDown.mousePressed(()=>{
-    if(PCseleccionado.selected){
-      if(PCseleccionado.tokenSize>1){PCseleccionado.tokenSize-=1}}
-    else{
-      if(TileSize>10){TileSize-=2}}
+    if(PCseleccionado){//only if it exists
+      if(PCseleccionado.selected){if(PCseleccionado.tokenSize>1){PCseleccionado.tokenSize-=1}}
+      else{if(TileSize>10){TileSize-=2}}
+    }
+    else{if(TileSize>10){TileSize-=2}}
   })
   
 
   //boton circulo
-  botonCirc = createButton('Círculo');
+  botonCirc = createButton('Circle');
   botonCirc.position(170, height);
   botonCirc.mousePressed(viewCircle);
 
   //boton cono
-  botonCono = createButton('Cono');
+  botonCono = createButton('Cone');
   botonCono.position(227, height);
   botonCono.mousePressed(viewCone);
 
   //boton barrera
-  botonBarrera = createButton('Barrera');
+  botonBarrera = createButton('Barrier');
   botonBarrera.position(275, height);
   botonBarrera.mousePressed(a => {haciendoBarrera=3;Barrera=[[0,0]];});
 
   //boton clearEnemies
-  clearEnemies = createButton('Limpiar');
+  clearEnemies = createButton('Clear');
   clearEnemies.position(454, height);
   clearEnemies.mousePressed(()=>{deleteAllEnemies();})
 
@@ -124,23 +129,42 @@ function crearBotones(){
   
 
   //boton newEnemy
-  newEnemyBut = createButton('Enemigo');
+  newEnemyBut = createButton('Enemy');
   newEnemyBut.position(633, height);
-  newEnemyBut.mousePressed(a => {
+  newEnemyBut.mousePressed(() => {
     let name
     let mov
     if(typeof input2.value() === 'string'){
       name=input2.value()
     }
-    else{name=""}
+    else{name=undefined}
     if(! isNaN(parseInt(input.value()))){
       mov=abs(parseInt(input.value()))
     }
     newEnemy(name,undefined,mov)
   })
 
+  //boton newPC
+  newPCBut = createButton('PC');
+  newPCBut.position(633, height+22);
+  newPCBut.mousePressed(() => {
+    let name
+    let mov
+    if(typeof input2.value() === 'string'){
+      name=input2.value()
+    }
+    else{name=undefined}
+    if(! isNaN(parseInt(input.value()))){
+      mov=abs(parseInt(input.value()))
+    }
+    newPC(name,undefined,mov)
+  })
+
+
+
+
   //boton deletePC
-  deletePCBut = createButton('Borrar');
+  deletePCBut = createButton('Delete');
   deletePCBut.position(701, height);
   deletePCBut.mousePressed(a => {
     for (let e of CombatArray){
@@ -209,7 +233,7 @@ function crearBotones(){
   EncounterBut2.elt.accept='.json'
 
   //boton addPCs
-  addPCbut = createButton('Add PC');
+  addPCbut = createButton('Add Party');
   addPCbut.position(378, height+22);
 
   //boton Encounter v2
@@ -218,7 +242,7 @@ function crearBotones(){
   })
   addPCbut2.position(378, height+22);
   addPCbut2.elt.style["opacity"]=0
-  addPCbut2.elt.style["width"]="62px"
+  addPCbut2.elt.style["width"]="75px"
   addPCbut2.elt.accept='.json'
 
 
@@ -294,14 +318,14 @@ function crearBotones(){
   //select background
   selBG = createSelect();
   selBG.position(513, height+22);
-  selBG.option("Fondo")
+  selBG.option("Background")
   //opciones de forma dinamica leyendo el nombre de cada elemento del array backgroundArray
   for(let i=0; i<savedBG.length;i++){
     selBG.option(savedBG[i].name)
   }
   //load background
   selBG.changed(a=>{
-    if(selBG.value()!="Fondo"){//Si no se ha seleccionado el por defecto
+    if(selBG.value()!="Background"){//Si no se ha seleccionado el por defecto
       bg=getImage(selBG.value(),"bg")
     }
     else{bg = 220}

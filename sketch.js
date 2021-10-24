@@ -5,7 +5,7 @@ let widthInit=1200-325
 let widthPlus=325
 let height=710
 var bg
-let seleccionado=0
+let seleccionado=-1 //No one selected at the beginning
 var PCseleccionado
 var offsetUI=60
 var offsetWidthUI=325
@@ -57,29 +57,6 @@ function setup() {
 
   //Crear botones
   crearBotones()
-
-  //Crear PCs
-  /* Donut=new PC("donut.jpg","Donut",7,7, 30, 21)
-  PCarray.push(Donut)
-
-  Saeya=new PC("Saeya.jpg","Saeya",12,9, 30, 20)
-  PCarray.push(Saeya)
-
-  Lotsu=new PC("happy.jpg","Lotsu",9,6, 30, 16)
-  PCarray.push(Lotsu)
-
-  Ghesh=new PC("happy.jpg","Ghesh",9,9, 30, 20)
-  PCarray.push(Ghesh)
-
-  Kornval=new PC("happy.jpg","Kornval",12,6, 25, 20)
-  PCarray.push(Kornval)
-
-  Hecalyra=new PC("happy.jpg","Hecályra",14,7, 30, 6)
-  PCarray.push(Hecalyra) */
-  
-
-  //CombatArray=PCarray//iniciar CombatArray sin enemigos todavia
-  //PCseleccionado=CombatArray[0]//iniciar PCseleccionado
 }
 
 
@@ -182,6 +159,7 @@ function windowResized() {
   clearEnemies.position(this.x, height)
   fullScreenBut.position(this.x, height)
   newEnemyBut.position(this.x, height)
+  newPCBut.position(this.x, height+22)
   deletePCBut.position(this.x, height)
   BgBut.position(this.x, height)
   BgBut2.position(this.x, height)

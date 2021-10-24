@@ -87,7 +87,7 @@ class PC {
 
 function newEnemy(name,image="Sword.png",movE,x=0,y=0, health, init, tokenSize=1){
     if (!name){
-        name="Enemigo " + (Enemyarray.length+1)
+        name="Enemy " + (Enemyarray.length+1)
     }
 
     if (!movE){
